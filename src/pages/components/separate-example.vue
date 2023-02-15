@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import { GridItem } from "../interface";
 import { singleWebglTransitionList } from "../constant";
-import { WebglTransitions } from "webgl-transition/lib";
+import { WebglTransitions } from "webgl-transition/dist/index";
 import RULE from "../../tools/rules";
 import { asyncLoadImage } from "../utils";
 
