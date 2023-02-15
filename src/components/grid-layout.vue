@@ -7,7 +7,7 @@
         <div :id="o.id" class="webgl-transition-parent"></div>
         <!-- <div :class="{ 'content-overlay': activeIndex != i }"></div> -->
         <img ref="imgRef" class="content-image" :src="o.playPicList[0]" />
-        <div class="content-details" :class="fadeInCss[i % 5]">
+        <div class="content-details" :class="fadeInCss[Number(i) % 5]">
           <!-- <h3>{{ o.title }}</h3>
           <p class="cursor" @click="onClickItem(o)">play</p> -->
           <div
