@@ -1,0 +1,8 @@
+按需加载：
+// const e111 = 'polkaDotsCurtain';
+// const aaa = yield import('./transition-types/polka-dots-curtain');
+
+// console.log('polkaDotsCurtain', aaa[e111]);
+
+
+Record<string, string | string[]>表示key是string，value为string或string[]的对象
