@@ -1,7 +1,5 @@
 <script setup lang="ts" name="apiCaution">
-
-import { animationsNameList } from '../constant'
-
+import { animationsNameList } from "../constant";
 </script>
 
 <template>
@@ -9,130 +7,113 @@ import { animationsNameList } from '../constant'
     <h2 class="h2">Constructor</h2>
 
     <h3 class="h3">
-      WebglTransitions( parent:<a class="param links">ParentDom</a>, transitionList:<a class="param links">any[]</a>, playPicList:<a class="param links">string[] | HTMLImageElement[]</a>, carouselTime?:<a class="param links">number</a>)
+      WebglTransitions( parent:<a class="param links">ParentDom</a>,
+      transitionList:<a class="param links">any[]</a>, playPicList:<a
+        class="param links"
+        >string[] | HTMLImageElement[]</a
+      >, carouselTime?:<a class="param links">number</a>)
     </h3>
     <p>
-      <a
-        class="links"
-        data-fragment="Box3"
-        title="Box3"
-        href="./index.html#api/en/math/Box3"
-        >parent</a
-      >
-      -- parent node informations, expect to pass a HTMLDIVElement which inincludes id, width(Optional), height(Optional).<br />
-      <a
-        class="links"
-        data-fragment="Color"
-        title="Color"
-        href="./index.html#api/en/math/Color"
-        >transitionList</a
-      >
-      -- a collection of animation names. Built-in animation types:<br /><br />
+      <a class="links">parent</a>
+      -- parent node informations, expect to pass a HTMLDIVElement which
+      inincludes id, width(Optional), height(Optional).<br />
+      <a class="links">transitionList</a>
+      -- a collection of animation names. Built-in animation types:<br />
       <a v-for="(item, index) in animationsNameList" :key="index">
-        {{item}}
-        <span v-if="index != animationsNameList.length - 1">、</span>
-      </a>
+        {{ item }}
+        <span v-if="index != animationsNameList.length - 1">、</span> </a
+      ><br />
 
-      Creates a new wireframe box that represents the passed Box3.
+      <a class="links">playPicList</a>
+      -- allow online images array or HTMLImageElements array<br />
+
+      <a class="links">carouselTime</a>
+      -- time between two animations. Unit:ms. Default: 3000.<br /><br />
+
+      Create a new WebglTransition instance.
     </p>
 
     <h2 class="h2">Properties</h2>
     <p>
-      See the base
+      See all properties in webgl-transition
       <a
         class="links"
-        data-fragment="LineSegments"
-        title="LineSegments"
-        href="./index.html#api/en/objects/LineSegments"
-        >LineSegments</a
+        href="https://github.com/jouvychen/webgl-transition/blob/master/lib/index.ts"
+        target="_blank"
+        >index.ts</a
       >
-      class for common properties.
     </p>
 
-    <h3 class="h3">
-      .<a
-        class="links"
-        data-fragment="Box3Helper.box"
-        id="box"
-        href="./index.html#api/en/helpers/Box3Helper.box"
-        >box</a
-      >
-      :
-      <a
-        class="param links"
-        data-fragment="Box3"
-        href="./index.html#api/en/math/Box3"
-        >Box3</a
-      >
-    </h3>
-    <p>The Box3 being visualized.</p>
+    <div><a class="links">.canvas</a>: HTMLCanvasElement.</div>
+    <div><a class="links">.vsSource</a>: vertex shader source.</div>
+    <div><a class="links">.fsSource</a>: fragment shader source.</div>
+    <div><a class="links">.vertexShader</a>: vertex Shader, a WebGLShader.</div>
+    <div>
+      <a class="links">.fragmentShader</a>: fragment Shader, a WebGLShader.
+    </div>
+    <div><a class="links">.shaderProgram</a>: WebGLProgram;</div>
+    <div><a class="links">.vertexBuffer</a>: WebGLBuffer;</div>
+    <div><a class="links">.gl</a>: WebGLRenderingContext;</div>
+    <div><a class="links">.playPicPreloadList</a>: store preloaded images.</div>
+    <div>
+      <a class="links">.textures</a>: take out 2 images from playPicPreloadList
+      to create textures every times.
+    </div>
+    <div>
+      <a class="links">.stopPlaying</a>: indicates whether the current state is
+      stopped.
+    </div>
+    <div><a class="links">.assignmentList</a>: set uniform parameters.</div>
 
     <h2 class="h2">Methods</h2>
     <p>
-      See the base
+      See all methods in webgl-transition
       <a
         class="links"
-        data-fragment="LineSegments"
-        title="LineSegments"
-        href="./index.html#api/en/objects/LineSegments"
-        >LineSegments</a
+        href="https://github.com/jouvychen/webgl-transition/blob/master/lib/index.ts"
+        target="_blank"
+        >index.ts</a
       >
-      class for common methods.
     </p>
 
     <h3 class="h3">
-      .<a
-        class="links"
-        data-fragment="Box3Helper.updateMatrixWorld"
-        id="updateMatrixWorld"
-        href="./index.html#api/en/helpers/Box3Helper.updateMatrixWorld"
-        >updateMatrixWorld</a
-      >
-      ( force : <span class="param">Boolean</span> ) :
+      .<a class="links">main</a>
+      ( ) :
+      <span class="param">undefined</span>
+    </h3>
+    <p>Create webgl content and start the animation.</p>
+
+    <h3 class="h3">
+      .<a class="links">simulatedLostContext</a> () :
       <span class="param">undefined</span>
     </h3>
     <p>
-      This overrides the method in the base
-      <a
-        class="links"
-        data-fragment="Object3D"
-        title="Object3D"
-        href="./index.html#api/en/core/Object3D"
-        >Object3D</a
-      >
-      class so that it also updates the wireframe box to the extent of the
-      <a
-        class="links"
-        data-fragment="Box3Helper.box"
-        title="Box3Helper.box"
-        href="./index.html#api/en/helpers/Box3Helper.box"
-        >.box</a
-      >
-      property.
+      Simulate lost webgl context, canvas will catch the webglcontextlost event
+      and restarts main method in few seconds.
     </p>
 
+    <!-- stop -->
     <h3 class="h3">
-      .<a
-        class="links"
-        data-fragment="Box3Helper.dispose"
-        id="dispose"
-        href="./index.html#api/en/helpers/Box3Helper.dispose"
-        >dispose</a
-      >
-      () : <span class="param">undefined</span>
+      .<a class="links">stop</a> () : <span class="param">undefined</span>
+    </h3>
+    <p>Call clearInterval method but no dispose webgl content.</p>
+
+    <!-- restart -->
+    <h3 class="h3">
+      .<a class="links">restart</a> () : <span class="param">undefined</span>
     </h3>
     <p>
-      Frees the GPU-related resources allocated by this instance. Call this
-      method whenever this instance is no longer used in your app.
+      Dispose webgl content and recreate a new animation, you can call this
+      method after stop.
     </p>
 
     <h2 class="h2">Source</h2>
 
     <p>
       <a
-        href="https://github.com/mrdoob/three.js/blob/master/src/helpers/Box3Helper.js"
+        href="https://github.com/jouvychen/webgl-transition/blob/master/lib/index.ts"
         target="_blank"
-        >src/helpers/Box3Helper.js</a
+        >webgl-transition/lib/index.ts</a
       >
     </p>
   </div>
@@ -142,6 +123,7 @@ import { animationsNameList } from '../constant'
 .api-caution {
   color: #444444;
   text-align: left;
+  max-width: 1200px;
 
   .h2 {
     font-size: 28px;
@@ -166,9 +148,6 @@ import { animationsNameList } from '../constant'
 
   .param {
     color: #999;
-    &:hover {
-      color: #444;
-    }
   }
 }
 </style>
