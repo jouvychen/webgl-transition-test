@@ -208,6 +208,29 @@ const listData: GridItem[] = [
     },
 ];
 
+const animationsNameList = [
+    "wind",
+    "waterDrop",
+    "squaresWire",
+    "dreamy",
+    "crossWarp",
+    "crossZoom",
+    "directionalWarp",
+    "randomSquares",
+    "ripple",
+    "flyEye",
+    "morph",
+    "mosaic",
+    "perlin",
+    "simpleZoom",
+    "directional",
+    "windowSlice",
+    "linearBlur",
+    "invertedPageCurl",
+    "glitchMemories",
+    "polkaDotsCurtain",
+  ]
+
 // 网络图片模式
 const singleModeCodeNetwork = `
     import { WebglTransitions } from "webgl-transition/lib";
@@ -289,4 +312,4 @@ const singleModeCodeMixed = `
     });
 `
 
-export { listData as singleWebglTransitionList, singleModeCodeNetwork, singleModeCodeMixed }
+export { listData as singleWebglTransitionList, animationsNameList, singleModeCodeNetwork, singleModeCodeMixed }

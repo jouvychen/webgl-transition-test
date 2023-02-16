@@ -1,4 +1,5 @@
 <script setup lang="ts" name="separateExample">
+import apiCaution from './api-caution.vue';
 import { singleModeCodeNetwork, singleModeCodeMixed } from "../constant";
 </script>
 
@@ -20,6 +21,10 @@ import { singleModeCodeNetwork, singleModeCodeMixed } from "../constant";
         language="js"
         :code="singleModeCodeMixed"
       />
+    </div>
+    <i>Ⅲ. Api and other points of caution</i>
+    <div class="code-container">
+      <api-caution></api-caution>
     </div>
   </div>
 </template>
