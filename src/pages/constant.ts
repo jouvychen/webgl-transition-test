@@ -229,11 +229,11 @@ const animationsNameList = [
     "invertedPageCurl",
     "glitchMemories",
     "polkaDotsCurtain",
-  ]
+]
 
 // 网络图片模式
 const singleModeCodeNetwork = `
-    import { WebglTransitions } from "webgl-transition/lib";
+    import { WebglTransitions } from "webgl-transition/dist/index";
     let webglTransitions = new WebglTransitions(
         {
             domId: '#webgl-transition', // Necessary
@@ -255,11 +255,12 @@ const singleModeCodeNetwork = `
 // 混合模式
 const singleModeCodeMixed = `
     // This example is based on Vite
-    import { WebglTransitions } from "webgl-transition/lib";
+    import { WebglTransitions } from "webgl-transition/dist/index";
     const getLocalImgUrl = (name: string) => {
         return new URL('The image path in your project + name', import.meta.url).href;
     };
 
+    // Both local and network images
     const imageList = ["http://pic1.zhimg.com/v2-4ce925afd994d72a16276bc7fbddf97c_r.jpg", getLocalImgUrl("white-lotus.webp")];
     
     const loadImgs = (imageList: string[]) => {
@@ -312,4 +313,30 @@ const singleModeCodeMixed = `
     });
 `
 
-export { listData as singleWebglTransitionList, animationsNameList, singleModeCodeNetwork, singleModeCodeMixed }
+// 批量动画模式
+const batchesModeCode = `
+    import { WebglTransitions } from "webgl-transition/dist/index";
+    let webglTransitions = new WebglTransitions(
+        {
+            domId: '#webgl-transition', // Necessary
+            width: 1920, // Optional attribute
+            height: 1080, // Optional attribute
+        },
+        [
+            'wind',
+            'waterDrop',
+            'squaresWire',
+            'dreamy'
+        ], // transitionList
+        [
+            "http://pic4.zhimg.com/v2-02ae8129fed6feadc1514fd861a44a2f_r.jpg",
+
+            "http://pic1.zhimg.com/v2-aa528fcd1a5ff3ba4a4a8429d3c11222_r.jpg",
+        
+            "http://pic1.zhimg.com/v2-4ce925afd994d72a16276bc7fbddf97c_r.jpg",
+        ] // playPicList
+      );
+    webglTransitions?.main();
+`
+
+export { listData as singleWebglTransitionList, animationsNameList, singleModeCodeNetwork, singleModeCodeMixed, batchesModeCode }

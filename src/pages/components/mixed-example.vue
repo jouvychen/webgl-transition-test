@@ -2,6 +2,7 @@
 import { computed } from "@vue/runtime-core";
 import { onMounted } from "vue";
 import { WebglTransitions } from "webgl-transition/dist/index";
+// import { WebglTransitions } from "webgl-transition/lib";
 // function bubleSort(arr: any) {
 //   var len = arr.length;
 //   for (let outer = len; outer >= 2; outer--) {
