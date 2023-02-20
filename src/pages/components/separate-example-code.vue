@@ -11,6 +11,9 @@ import {
 
 <template>
   <div class="separate-example-code-container">
+    <!-- 版本号 -->
+    <h1>webgl-transition documentation(V1.2.0)</h1>
+
     <!-- Api和注意事项 -->
     <h3>Api</h3>
 
@@ -78,7 +81,12 @@ import {
 <style scoped lang="less">
 .separate-example-code-container {
   color: #888;
+  padding: 24px 0;
   max-width: 1200px;
+
+  h1 {
+    color: #2d2d2d;
+  }
 
   .code-container {
     padding: 0 24px;

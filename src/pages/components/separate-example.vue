@@ -72,7 +72,7 @@ let listData = singleWebglTransitionList.map((o: GridItem, i: number) => {
   o.id = `webgl-transition-parent-${Math.random().toString().slice(2, 10)}${i}`;
   return o;
 });
-const moduleTitle = "webgl-transition demo";
+const moduleTitle = "webgl-transition demo(V1.2.0)";
 const imgs = [
   "http://pic4.zhimg.com/v2-02ae8129fed6feadc1514fd861a44a2f_r.jpg",
 
