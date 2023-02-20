@@ -1,5 +1,7 @@
 <script setup lang="ts" name="separateExample">
 import apiCaution from "./api-caution.vue";
+import versionIteration from "./version-iteration.vue";
+import someTips from "./some-tips.vue";
 import {
   singleModeCodeNetwork,
   singleModeCodeMixed,
@@ -10,12 +12,30 @@ import {
 <template>
   <div class="separate-example-code-container">
     <!-- Api和注意事项 -->
-    <h3>Api and some tips</h3>
+    <h3>Api</h3>
 
     <div class="code-container">
       <api-caution></api-caution>
     </div>
 
+    <br />
+    <br />
+
+
+    <!-- 版本迭代 -->
+    <h3>Version iteration</h3>
+    <div class="code-container">
+      <version-iteration></version-iteration>
+    </div>
+    <br />
+    <br />
+
+
+    <!-- 注意事项 -->
+    <h3>Some tips</h3>
+    <div class="code-container">
+      <some-tips></some-tips>
+    </div>
     <br />
     <br />
 

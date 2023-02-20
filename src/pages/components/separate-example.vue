@@ -4,10 +4,59 @@ import { ref } from "vue";
 import { GridItem } from "../interface";
 import { singleWebglTransitionList } from "../constant";
 // import { WebglTransitions } from "webgl-transition/dist/index";
-import { WebglTransitions } from "webgl-transition/lib";
+// import { WebglTransitions } from "webgl-transition/lib";
+
+import { WebglTransitions } from "../../dist/index";
+import { wind,
+    waterDrop,
+    squaresWire,
+    crossWarp,
+    crossZoom,
+    directionalWarp,
+    dreamy,
+    flyEye,
+    morph,
+    mosaic,
+    perlin,
+    randomSquares,
+    ripple,
+    simpleZoom,
+    directional,
+    windowSlice,
+    invertedPageCurl,
+    linearBlur,
+    glitchMemories,
+    polkaDotsCurtain } from '../../dist/transition-types'
+    //  'webgl-transition/lib/transition-types'
 import RULE from "../../tools/rules";
 import { asyncLoadImage } from "../utils";
 
+interface ObjectKey {
+  [key: string]: any;
+}
+
+const transitionObject: ObjectKey = {
+  wind: wind,
+  waterDrop: waterDrop,
+  squaresWire: squaresWire,
+  crossWarp: crossWarp,
+  crossZoom: crossZoom,
+  directionalWarp: directionalWarp,
+  dreamy: dreamy,
+  flyEye: flyEye,
+  morph: morph,
+  mosaic: mosaic,
+  perlin: perlin,
+  randomSquares: randomSquares,
+  ripple: ripple,
+  simpleZoom: simpleZoom,
+  directional: directional,
+  windowSlice: windowSlice,
+  invertedPageCurl: invertedPageCurl,
+  linearBlur: linearBlur,
+  glitchMemories: glitchMemories,
+  polkaDotsCurtain: polkaDotsCurtain,
+}
 // defineProps<{ msg: string }>();
 
 /**
@@ -53,7 +102,7 @@ const onClickGrid = async (object: GridItem) => {
       {
         domId: `#${object.id}`,
       },
-      [object.title],
+      [transitionObject[object.title]],
       result
     );
 
