@@ -1,6 +1,6 @@
 <template>
   <div class="webgl-transition-demo--container ptb24">
-    <mixed-example></mixed-example>
+    <batches-example></batches-example>
 
     <separate-example></separate-example>
   </div>
@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import separateExample from "./components/separate-example.vue";
-import mixedExample from "./components/mixed-example.vue";
+import batchesExample from "./components/batches-example.vue";
 </script>
 <style scoped lang="less">
 .webgl-transition-demo--container {

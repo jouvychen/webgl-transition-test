@@ -4,21 +4,24 @@
 <template>
   <div class="some-tips">
     <p>
-      Ⅰ.Since continuous animation requires higher GPU overhead and consumes
-      more resources as the size of the canvas increases, please call the
-      dispose method to free the memory when you no longer need the instance<b
+      Ⅰ.<b>Release resources</b>：Since continuous animation requires higher GPU
+      overhead and consumes more resources as the size of the canvas increases,
+      please call the stop() and dispose() to free the memory when you no longer
+      need the instance<b
         title="webglTransitions is the WebglTransitions's instance"
-        >(demo: webglTransitions.dispose())</b
-      >. If you don't need it for a while, you can call stop first and then
+        >(demo: webglTransitions.stop(); webglTransitions.dispose())</b
+      >.
+      <!-- If you don't need it for a while, you can call stop first and then
       restart the animation when you need it again<b
         title="webglTransitions is the WebglTransitions's instance"
         >(demo: webglTransitions.stop();webglTransitions.restart())</b
-      >.
+      >. -->
     </p>
     <p>
-      Ⅱ.About <b>diushijianting</b>, since webgl will lose its context when the
+      Ⅱ. <b>numberOfLostContext</b>：Since webgl will lose its context when the
       system or web page sleeps, define this parameter to control the number of
-      times Webgl-transitions should be re-instantiated.
+      times Webgl-transitions should be re-instantiated,it will try twice at
+      most.
     </p>
   </div>
 </template>

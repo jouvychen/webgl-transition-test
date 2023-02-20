@@ -3,31 +3,36 @@ import { ref } from "vue";
 
 import { GridItem } from "../interface";
 import { singleWebglTransitionList } from "../constant";
-// import { WebglTransitions } from "webgl-transition/dist/index";
+// 已发布依赖
+import { WebglTransitions } from "webgl-transition/dist/index";
+
 // import { WebglTransitions } from "webgl-transition/lib";
 
-import { WebglTransitions } from "../../dist/index";
-import { wind,
-    waterDrop,
-    squaresWire,
-    crossWarp,
-    crossZoom,
-    directionalWarp,
-    dreamy,
-    flyEye,
-    morph,
-    mosaic,
-    perlin,
-    randomSquares,
-    ripple,
-    simpleZoom,
-    directional,
-    windowSlice,
-    invertedPageCurl,
-    linearBlur,
-    glitchMemories,
-    polkaDotsCurtain } from '../../dist/transition-types'
-    //  'webgl-transition/lib/transition-types'
+// import { WebglTransitions } from "../../dist/index";
+import {
+  wind,
+  waterDrop,
+  squaresWire,
+  crossWarp,
+  crossZoom,
+  directionalWarp,
+  dreamy,
+  flyEye,
+  morph,
+  mosaic,
+  perlin,
+  randomSquares,
+  ripple,
+  simpleZoom,
+  directional,
+  windowSlice,
+  invertedPageCurl,
+  linearBlur,
+  glitchMemories,
+  polkaDotsCurtain,
+} from "webgl-transition/dist/transition-types";
+//  '../../dist/transition-types'
+//  'webgl-transition/lib/transition-types'
 import RULE from "../../tools/rules";
 import { asyncLoadImage } from "../utils";
 
@@ -56,7 +61,7 @@ const transitionObject: ObjectKey = {
   linearBlur: linearBlur,
   glitchMemories: glitchMemories,
   polkaDotsCurtain: polkaDotsCurtain,
-}
+};
 // defineProps<{ msg: string }>();
 
 /**
@@ -67,7 +72,7 @@ let listData = singleWebglTransitionList.map((o: GridItem, i: number) => {
   o.id = `webgl-transition-parent-${Math.random().toString().slice(2, 10)}${i}`;
   return o;
 });
-const moduleTitle = "webgl-transition演示";
+const moduleTitle = "webgl-transition demo";
 const imgs = [
   "http://pic4.zhimg.com/v2-02ae8129fed6feadc1514fd861a44a2f_r.jpg",
 
@@ -134,6 +139,13 @@ const onClickGrid = async (object: GridItem) => {
 const onViewCode = () => {
   router.push("/view-code");
 };
+
+// clear Interval when page unmounted
+onUnmounted(() => {
+  webglTransitions?.stop();
+  webglTransitions?.dispose();
+  console.log("separate-example释放webglTransitions", webglTransitions);
+});
 </script>
 
 <template>
@@ -144,7 +156,7 @@ const onViewCode = () => {
     <p>
       Each is a separate instance showing a different transition animation
       effect.
-      <a @click="onViewCode" class="cursor">(view code)</a>
+      <a @click="onViewCode" class="cursor">(documentation)</a>
     </p>
     <grid-layout
       :title="moduleTitle"

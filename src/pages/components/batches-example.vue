@@ -1,13 +1,38 @@
 <script setup lang="ts" name="mixedExample">
 import { computed } from "@vue/runtime-core";
 import { onMounted } from "vue";
-// import { WebglTransitions } from "webgl-transition/dist/index";
+// 已发布依赖
+import { WebglTransitions } from "webgl-transition/dist/index";
+import {
+  wind,
+  waterDrop,
+  squaresWire,
+  crossWarp,
+  crossZoom,
+  directionalWarp,
+  dreamy,
+  flyEye,
+  morph,
+  mosaic,
+  perlin,
+  randomSquares,
+  ripple,
+  simpleZoom,
+  directional,
+  windowSlice,
+  invertedPageCurl,
+  linearBlur,
+  glitchMemories,
+  polkaDotsCurtain,
+} from "webgl-transition/dist/transition-types";
 
+// npm link webgl-transition测试
 // import { WebglTransitions } from "webgl-transition/lib";
-// import { wind, glitchMemories } from 'webgl-transition/lib/transition-types'
+// import { wind, glitchMemories } from "webgl-transition/lib/transition-types";
 
-import { WebglTransitions } from "../../dist/index";
-import { wind, glitchMemories } from '../../dist/transition-types'
+// 打包产物测试
+// import { WebglTransitions } from "../../dist/index";
+// import { wind, glitchMemories } from '../../dist/transition-types'
 
 let webglTransitions: WebglTransitions;
 const glcanvasRef = ref<HTMLDivElement>();
@@ -36,7 +61,25 @@ onMounted(() => {
     },
     [
       wind,
-      glitchMemories
+      waterDrop,
+      squaresWire,
+      crossWarp,
+      crossZoom,
+      directionalWarp,
+      dreamy,
+      flyEye,
+      morph,
+      mosaic,
+      perlin,
+      randomSquares,
+      ripple,
+      simpleZoom,
+      directional,
+      windowSlice,
+      invertedPageCurl,
+      linearBlur,
+      glitchMemories,
+      polkaDotsCurtain,
     ],
     imgs
   );
@@ -47,7 +90,14 @@ const lost = () => {
 };
 const stop = () => {
   webglTransitions?.stop();
+  webglTransitions?.dispose();
+  console.log("batches-example释放webglTransitions", webglTransitions);
 };
+
+// clear Interval when page unmounted
+onUnmounted(() => {
+  stop();
+});
 </script>
 
 <template>

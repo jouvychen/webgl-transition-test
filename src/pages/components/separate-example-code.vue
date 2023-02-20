@@ -21,7 +21,6 @@ import {
     <br />
     <br />
 
-
     <!-- 版本迭代 -->
     <h3>Version iteration</h3>
     <div class="code-container">
@@ -29,7 +28,6 @@ import {
     </div>
     <br />
     <br />
-
 
     <!-- 注意事项 -->
     <h3>Some tips</h3>
@@ -80,6 +78,7 @@ import {
 <style scoped lang="less">
 .separate-example-code-container {
   color: #888;
+  max-width: 1200px;
 
   .code-container {
     padding: 0 24px;

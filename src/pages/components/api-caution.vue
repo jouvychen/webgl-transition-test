@@ -1,6 +1,5 @@
 <script setup lang="ts" name="apiCaution">
 import { animationsNameList } from "../constant";
-
 </script>
 
 <template>
@@ -19,17 +18,19 @@ import { animationsNameList } from "../constant";
       -- parent node informations, expect to pass a HTMLDIVElement which
       inincludes id, width(Optional), height(Optional).<br />
       <a class="links">transitionList</a>
-      -- a collection of animation names. Built-in animation types:<br />
+      -- a collection of animation modules. Import the corresponding animation
+      module to transitionList. The supported types are:<br />
       <a v-for="(item, index) in animationsNameList" :key="index">
         {{ item }}
         <span v-if="index != animationsNameList.length - 1">、</span> </a
       ><br />
 
       <a class="links">playPicList</a>
-      -- allow online images array or HTMLImageElements array<br />
+      -- allow online images array or HTMLImageElements array.<br />
 
       <a class="links">carouselTime</a>
-      -- time between two animations. Unit:ms. Default: 3000.<br /><br />
+      -- time between two animations. <b>Unit</b>:<a>ms</a>. <b>Default</b>:
+      <a>3000</a>.<br /><br />
 
       Create a new WebglTransition instance.
     </p>
@@ -52,9 +53,9 @@ import { animationsNameList } from "../constant";
     <div>
       <a class="links">.fragmentShader</a>: fragment Shader, a WebGLShader.
     </div>
-    <div><a class="links">.shaderProgram</a>: WebGLProgram;</div>
-    <div><a class="links">.vertexBuffer</a>: WebGLBuffer;</div>
-    <div><a class="links">.gl</a>: WebGLRenderingContext;</div>
+    <div><a class="links">.shaderProgram</a>: WebGLProgram.</div>
+    <div><a class="links">.vertexBuffer</a>: WebGLBuffer.</div>
+    <div><a class="links">.gl</a>: WebGLRenderingContext.</div>
     <div><a class="links">.playPicPreloadList</a>: store preloaded images.</div>
     <div>
       <a class="links">.textures</a>: take out 2 images from playPicPreloadList
@@ -99,13 +100,19 @@ import { animationsNameList } from "../constant";
     </h3>
     <p>Call clearInterval method but no dispose webgl content.</p>
 
+    <!-- dispose -->
+    <h3 class="h3">
+      .<a class="links">dispose</a> () : <span class="param">undefined</span>
+    </h3>
+    <p>Release webgl resources.</p>
+
     <!-- restart -->
     <h3 class="h3">
       .<a class="links">restart</a> () : <span class="param">undefined</span>
     </h3>
     <p>
-      Dispose webgl content and recreate a new animation, you can call this
-      method after stop.
+      Dispose webgl content and recreate a new animation, it will be called
+      automatically when the system sleeps(at most twice).
     </p>
 
     <h2 class="h2">Source</h2>
@@ -117,7 +124,6 @@ import { animationsNameList } from "../constant";
         >webgl-transition/lib/index.ts</a
       >
     </p>
-    
   </div>
 </template>
 

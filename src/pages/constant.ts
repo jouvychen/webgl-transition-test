@@ -234,7 +234,7 @@ const animationsNameList = [
 // 网络图片模式
 const singleModeCodeNetwork = `
     import { WebglTransitions } from "webgl-transition/dist/index";
-    import { wind } from "/webgl-transition/dist/transition-types";
+    import { wind } from "webgl-transition/dist/transition-types";
     let webglTransitions = new WebglTransitions(
         {
             domId: "#webgl-transition", // Necessary
@@ -259,7 +259,7 @@ const singleModeCodeNetwork = `
 const singleModeCodeMixed = `
     // This example is based on Vite
     import { WebglTransitions } from "webgl-transition/dist/index";
-    import { wind } from "/webgl-transition/dist/transition-types";
+    import { wind } from "webgl-transition/dist/transition-types";
 
     const getLocalImgUrl = (name: string) => {
         return new URL("The image path in your project + name", import.meta.url).href;
@@ -323,7 +323,7 @@ const singleModeCodeMixed = `
 // 批量动画模式
 const batchesModeCode = `
     import { WebglTransitions } from "webgl-transition/dist/index";
-    import { wind, waterDrop, squaresWire, dreamy } from "/webgl-transition/dist/transition-types";
+    import { wind, waterDrop, squaresWire, dreamy } from "webgl-transition/dist/transition-types";
 
     let webglTransitions = new WebglTransitions(
         {
