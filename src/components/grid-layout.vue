@@ -1,23 +1,19 @@
 <template>
   <div class="grid-container">
-    <!-- <h1 class="main-title">{{ title }}</h1> -->
-
-    <div v-for="(o, i) in list" :key="i" class="container">
+    
+    <div ref="gridRef" v-for="(o, i) in list" :key="i" class="container">
       <div class="content">
         <div :id="o.id" class="webgl-transition-parent"></div>
-        <!-- <div :class="{ 'content-overlay': activeIndex != i }"></div> -->
+        
         <img ref="imgRef" class="content-image" :src="o.playPicList[0]" />
         <div class="content-details" :class="fadeInCss[Number(i) % 5]">
-          <!-- <h3>{{ o.title }}</h3>
-          <p class="cursor" @click="onClickItem(o)">play</p> -->
+          
           <div
-            :class="{ 'play-btn-active': activeIndex === i }"
-            @click="onClickItem(o, i)"
+            :class="{ 'play-btn-active': activeIndex === Number(i) }"
+            @click="onClickItem(o, Number(i))"
             class="play-btn flex-center"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-              <polygon points="40,34 68,52 40,70"></polygon>
-            </svg>
+            <CssPlayPauseButton ref="playPauseBtnRef"></CssPlayPauseButton>
           </div>
         </div>
       </div>
@@ -29,6 +25,7 @@
 import { nextTick, onMounted, onUnmounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { debounce } from "../tools/common";
+import CssPlayPauseButton from "@/components/css-play-pause-button.vue"; // css播放暂停按钮
 
 interface GridItem {
   path: string;
@@ -55,7 +52,9 @@ const props = defineProps({
   },
 });
 
-const activeIndex = ref<string>();
+const gridRef = ref([]);
+const playPauseBtnRef = ref<typeof CssPlayPauseButton[]>([]);
+const activeIndex = ref<number>();
 const imgRef = ref<HTMLImageElement>();
 const imgHeight = ref(0);
 const fadeInCss: ObjectKey = {
@@ -66,13 +65,17 @@ const fadeInCss: ObjectKey = {
   4: "fadeIn-top fadeIn-right",
 };
 
-const onClickItem = (object: GridItem, index: string) => {
-  // router.push(object.path);
+const onClickItem = (object: GridItem, index: number) => {
+  // 点击是同一个
+  if (activeIndex.value === index) {
+    playPauseBtnRef.value[index].onToggleActive();
+  } else {
+    // 不同时，先暂停上一个，然后下一个展示播放中
+    activeIndex.value?.toString() && playPauseBtnRef.value[activeIndex.value].onPause();
+    playPauseBtnRef.value[index].onToggleActive();
+  }
   activeIndex.value = index;
   emits("onClickGrid", object);
-  setTimeout(() => {
-    activeIndex.value = "";
-  }, 1500);
 };
 
 const calcImgHeight = () => {
