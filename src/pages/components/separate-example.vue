@@ -4,12 +4,33 @@ import { ref } from "vue";
 import { GridItem } from "../interface";
 import { singleWebglTransitionList } from "../constant";
 // 已发布依赖
-import { WebglTransitions } from "webgl-transition/dist/index";
+// import { WebglTransitions } from "webgl-transition/dist/index";
+// import {
+//   wind,
+//   waterDrop,
+//   squaresWire,
+//   crossWarp,
+//   crossZoom,
+//   directionalWarp,
+//   dreamy,
+//   flyEye,
+//   morph,
+//   mosaic,
+//   perlin,
+//   randomSquares,
+//   ripple,
+//   simpleZoom,
+//   directional,
+//   windowSlice,
+//   invertedPageCurl,
+//   linearBlur,
+//   glitchMemories,
+//   polkaDotsCurtain,
+// } from "webgl-transition/dist/transition-types";
 
-// import { WebglTransitions } from "webgl-transition/lib";
-
-// import { WebglTransitions } from "../../dist/index";
+// npm link webgl-transition测试
 import {
+  WebglTransitions,
   wind,
   waterDrop,
   squaresWire,
@@ -30,7 +51,10 @@ import {
   linearBlur,
   glitchMemories,
   polkaDotsCurtain,
-} from "webgl-transition/dist/transition-types";
+} from "webgl-transition";
+
+// import { WebglTransitions } from "../../dist/index";
+
 //  '../../dist/transition-types'
 //  'webgl-transition/lib/transition-types'
 import RULE from "../../tools/rules";
@@ -64,9 +88,6 @@ const transitionObject: ObjectKey = {
 };
 // defineProps<{ msg: string }>();
 
-/**
- * variable
- */
 const router = useRouter();
 let listData = singleWebglTransitionList.map((o: GridItem, i: number) => {
   o.id = `webgl-transition-parent-${Math.random().toString().slice(2, 10)}${i}`;
@@ -87,33 +108,48 @@ const lastPlayObject = ref<GridItem>();
  * function
  */
 const onClickGrid = async (object: GridItem) => {
-  webglTransitions?.stop();
-  webglTransitions?.dispose();
-
-  // 清空历史wengl-transition的canvas
-  const el = document.querySelector(`#${lastPlayObject.value?.id}`);
-  if (el) {
-    const childs = el.children;
-    for (let i = childs.length - 1; i >= 0; i--) {
-      if (RULE.webglTransitionParent.pattern.test(childs[i].id)) {
-        el.removeChild(childs[i]);
+  // 方式一：用户自定义图片, 需要在图片加载完成后才能初始化和调用方法
+  if (
+    WebglTransitions.playStatus === "pause" &&
+    lastPlayObject.value?.id === object.id
+  ) {
+    webglTransitions?.continue();
+  } else if (
+    WebglTransitions.playStatus === "stop" ||
+    lastPlayObject.value?.id != object.id
+  ) {
+    if (lastPlayObject.value) {
+      const el = document.querySelector(`#${lastPlayObject.value?.id}`);
+      if (el) {
+        const childs = el.children;
+        for (let i = childs.length - 1; i >= 0; i--) {
+          if (RULE.webglTransitionParent.pattern.test(childs[i].id)) {
+            el.removeChild(childs[i]);
+          }
+        }
       }
     }
+    webglTransitions?.stop();
+    webglTransitions?.dispose();
+    asyncLoadImage(object.playPicList, (result: HTMLImageElement[]) => {
+      const obj = {
+        parentId: `#${object.id}`,
+        transitionList: [transitionObject[object.title]],
+        playPicUrlList: [],
+        playPicList: result,
+        watchResize: true,
+      };
+      webglTransitions = new WebglTransitions(obj);
+
+      webglTransitions?.main();
+      lastPlayObject.value = object;
+    });
+  } else if (
+    WebglTransitions.playStatus === "playing" &&
+    lastPlayObject.value?.id === object.id
+  ) {
+    webglTransitions?.pause();
   }
-
-  // 方式一：用户自定义图片, 需要在图片加载完成后才能初始化和调用方法
-  asyncLoadImage(object.playPicList, (result: HTMLImageElement[]) => {
-    webglTransitions = new WebglTransitions(
-      {
-        domId: `#${object.id}`,
-      },
-      [transitionObject[object.title]],
-      result
-    );
-
-    webglTransitions?.main();
-    lastPlayObject.value = object;
-  });
 
   // 方式2：传网络图片, webgl-transition内部管理并发加载
   // webglTransitions = new WebglTransitions(
