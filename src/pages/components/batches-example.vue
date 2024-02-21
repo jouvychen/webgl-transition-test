@@ -65,7 +65,7 @@ const calcWidth = () => {
 };
 const calcHeight = () => {
   clientHeight.value = glcanvasRef.value
-    ? Number((glcanvasRef.value?.clientWidth * 1080) / 1920)
+    ? Number((glcanvasRef.value?.clientWidth * 2400) / 3600)
     : 0;
 };
 onMounted(() => {
@@ -73,11 +73,13 @@ onMounted(() => {
   calcHeight();
   nextTick(() => {
     const imgs = [
-      "http://pic4.zhimg.com/v2-02ae8129fed6feadc1514fd861a44a2f_r.jpg",
+      "https://img.zcool.cn/community/011d775d5663d2a80120695cdbced1.jpg",
+      "https://img.zcool.cn/community/0158fc5d5663d6a80120695cf12578.jpg",
+      "https://img.zcool.cn/community/01326c5d5663d2a8012187f49b8eed.jpg",
+      "https://img.zcool.cn/community/013d165d5663d2a8012187f41712de.jpg",
+      "https://img.zcool.cn/community/01c7575d5663d2a80120695c9b90d1.jpg",
 
-      "http://pic1.zhimg.com/v2-aa528fcd1a5ff3ba4a4a8429d3c11222_r.jpg",
-
-      "http://pic1.zhimg.com/v2-4ce925afd994d72a16276bc7fbddf97c_r.jpg",
+      // "http://pic1.zhimg.com/v2-4ce925afd994d72a16276bc7fbddf97c_r.jpg", // 可能是编码问题
     ];
     const obj = {
       parentId: '#glcanvas',
@@ -152,7 +154,7 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="less">
 #glcanvas {
   overflow: hidden;
 }
