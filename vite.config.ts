@@ -15,4 +15,13 @@ export default defineConfig({
     },
   },
   base: './',
+  server: {
+    host: '0.0.0.0',
+    port: 5173, // 设置服务启动端口号
+    open: false, // 设置服务启动时是否自动打开浏览器
+    cors: true, // 允许跨域
+    // 设置代理，根据项目实际情况配置
+    // proxy: {
+    // },
+  },
 })
