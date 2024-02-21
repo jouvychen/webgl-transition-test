@@ -2,8 +2,33 @@
 import { computed } from "@vue/runtime-core";
 import { onMounted } from "vue";
 // 已发布依赖
-import { WebglTransitions } from "webgl-transition/dist/index";
+// import { WebglTransitions } from "webgl-transition/dist/index";
+// import {
+//   wind,
+//   waterDrop,
+//   squaresWire,
+//   crossWarp,
+//   crossZoom,
+//   directionalWarp,
+//   dreamy,
+//   flyEye,
+//   morph,
+//   mosaic,
+//   perlin,
+//   randomSquares,
+//   ripple,
+//   simpleZoom,
+//   directional,
+//   windowSlice,
+//   invertedPageCurl,
+//   linearBlur,
+//   glitchMemories,
+//   polkaDotsCurtain,
+// } from "webgl-transition/dist/transition-types";
+
+// npm link webgl-transition测试
 import {
+  WebglTransitions,
   wind,
   waterDrop,
   squaresWire,
@@ -24,11 +49,8 @@ import {
   linearBlur,
   glitchMemories,
   polkaDotsCurtain,
-} from "webgl-transition/dist/transition-types";
-
-// npm link webgl-transition测试
-// import { WebglTransitions } from "webgl-transition/lib";
-// import { wind, glitchMemories } from "webgl-transition/lib/transition-types";
+} from "webgl-transition";
+import { debounce } from "@/tools/common";
 
 // 打包产物测试
 // import { WebglTransitions } from "../../dist/index";
@@ -36,54 +58,72 @@ import {
 
 let webglTransitions: WebglTransitions;
 const glcanvasRef = ref<HTMLDivElement>();
-const clientWidth = computed(() => {
-  return glcanvasRef.value?.clientWidth;
-});
-const clientHeight = computed(() => {
-  const height = glcanvasRef.value
+const clientWidth = ref(0);
+const clientHeight = ref(0);
+const calcWidth = () => {
+  clientWidth.value = glcanvasRef.value ? glcanvasRef.value.clientWidth : 0;
+};
+const calcHeight = () => {
+  clientHeight.value = glcanvasRef.value
     ? Number((glcanvasRef.value?.clientWidth * 1080) / 1920)
     : 0;
-  return height;
-});
+};
 onMounted(() => {
-  const imgs = [
-    "http://pic4.zhimg.com/v2-02ae8129fed6feadc1514fd861a44a2f_r.jpg",
+  calcWidth();
+  calcHeight();
+  nextTick(() => {
+    const imgs = [
+      "http://pic4.zhimg.com/v2-02ae8129fed6feadc1514fd861a44a2f_r.jpg",
 
-    "http://pic1.zhimg.com/v2-aa528fcd1a5ff3ba4a4a8429d3c11222_r.jpg",
+      "http://pic1.zhimg.com/v2-aa528fcd1a5ff3ba4a4a8429d3c11222_r.jpg",
 
-    "http://pic1.zhimg.com/v2-4ce925afd994d72a16276bc7fbddf97c_r.jpg",
-  ];
-  webglTransitions = new WebglTransitions(
-    {
-      domId: "#glcanvas",
-      width: clientWidth.value,
-      height: clientHeight.value,
-    },
-    [
-      wind,
-      waterDrop,
-      squaresWire,
-      crossWarp,
-      crossZoom,
-      directionalWarp,
-      dreamy,
-      flyEye,
-      morph,
-      mosaic,
-      perlin,
-      randomSquares,
-      ripple,
-      simpleZoom,
-      directional,
-      windowSlice,
-      invertedPageCurl,
-      linearBlur,
-      glitchMemories,
-      polkaDotsCurtain,
-    ],
-    imgs
-  );
-  webglTransitions?.main();
+      "http://pic1.zhimg.com/v2-4ce925afd994d72a16276bc7fbddf97c_r.jpg",
+    ];
+    const obj = {
+      parentId: '#glcanvas',
+      transitionList: [
+        wind,
+        waterDrop,
+        squaresWire,
+        crossWarp,
+        crossZoom,
+        directionalWarp,
+        dreamy,
+        flyEye,
+        morph,
+        mosaic,
+        perlin,
+        randomSquares,
+        ripple,
+        simpleZoom,
+        directional,
+        windowSlice,
+        invertedPageCurl,
+        linearBlur,
+        glitchMemories,
+        polkaDotsCurtain,
+      ],
+      playPicUrlList: imgs,
+      playPicList: [],
+      carouselTime: 1000,
+      watchResize: false,
+    };
+    webglTransitions = new WebglTransitions(obj);
+    webglTransitions?.main();
+
+    const resizeObserver = new ResizeObserver(
+      debounce(() => {
+        calcWidth();
+        calcHeight();
+        console.log('大小变化');
+        webglTransitions?.onResize(
+            clientWidth.value,
+            clientHeight.value
+          );
+      }, 300)
+    );
+    glcanvasRef.value && resizeObserver.observe(glcanvasRef.value);
+  });
 });
 const lost = () => {
   webglTransitions?.simulatedLostContext();
@@ -107,10 +147,13 @@ onUnmounted(() => {
     <div
       ref="glcanvasRef"
       id="glcanvas"
-      :style="{ width: '100%', height: clientHeight + 'px' }"
+      :style="{ width: '100vw', height: clientHeight + 'px' }"
     ></div>
   </div>
 </template>
 
 <style scoped>
+#glcanvas {
+  overflow: hidden;
+}
 </style>
