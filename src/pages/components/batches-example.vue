@@ -82,7 +82,7 @@ onMounted(() => {
       // "http://pic1.zhimg.com/v2-4ce925afd994d72a16276bc7fbddf97c_r.jpg", // 可能是编码问题
     ];
     const obj = {
-      parentId: '#glcanvas',
+      parentId: "#glcanvas",
       transitionList: [
         wind,
         waterDrop,
@@ -117,11 +117,11 @@ onMounted(() => {
       debounce(() => {
         calcWidth();
         calcHeight();
-        console.log('大小变化');
-        webglTransitions?.onResize(
-            clientWidth.value,
-            clientHeight.value
-          );
+        console.log("大小变化");
+        webglTransitions?.onResize({
+          width: clientWidth.value,
+          height: clientHeight.value,
+        });
       }, 300)
     );
     glcanvasRef.value && resizeObserver.observe(glcanvasRef.value);

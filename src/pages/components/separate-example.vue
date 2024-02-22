@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 import { GridItem } from "../interface";
 import { singleWebglTransitionList } from "../constant";
+import gridLayout from "@/components/grid-layout.vue";
 // 已发布依赖
 // import { WebglTransitions } from "webgl-transition/dist/index";
 // import {
@@ -88,6 +89,7 @@ const transitionObject: ObjectKey = {
 };
 // defineProps<{ msg: string }>();
 
+const gridLayoutRef = ref<typeof gridLayout>();
 const router = useRouter();
 let listData = singleWebglTransitionList.map((o: GridItem, i: number) => {
   o.id = `webgl-transition-parent-${Math.random().toString().slice(2, 10)}${i}`;
@@ -110,12 +112,12 @@ const lastPlayObject = ref<GridItem>();
 const onClickGrid = async (object: GridItem) => {
   // 方式一：用户自定义图片, 需要在图片加载完成后才能初始化和调用方法
   if (
-    WebglTransitions.playStatus === "pause" &&
+    webglTransitions?.playStatus === "pause" &&
     lastPlayObject.value?.id === object.id
   ) {
     webglTransitions?.continue();
   } else if (
-    WebglTransitions.playStatus === "stop" ||
+    webglTransitions?.playStatus === "stop" ||
     lastPlayObject.value?.id != object.id
   ) {
     if (lastPlayObject.value) {
@@ -145,7 +147,7 @@ const onClickGrid = async (object: GridItem) => {
       lastPlayObject.value = object;
     });
   } else if (
-    WebglTransitions.playStatus === "playing" &&
+    webglTransitions?.playStatus === "playing" &&
     lastPlayObject.value?.id === object.id
   ) {
     webglTransitions?.pause();
@@ -195,6 +197,7 @@ onUnmounted(() => {
       <a @click="onViewCode" class="cursor">(documentation)</a>
     </p>
     <grid-layout
+      ref="gridLayoutRef"
       :title="moduleTitle"
       :list="listData"
       @on-click-grid="onClickGrid"
