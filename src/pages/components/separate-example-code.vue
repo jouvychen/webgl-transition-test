@@ -12,7 +12,7 @@ import {
 <template>
   <div class="separate-example-code-container">
     <!-- 版本号 -->
-    <h1>webgl-transition documentation(V1.2.0)</h1>
+    <h1>webgl-transition documentation(V1.3.1)</h1>
 
     <!-- Api和注意事项 -->
     <h3>Api</h3>

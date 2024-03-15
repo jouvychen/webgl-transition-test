@@ -5,14 +5,7 @@ const listData: GridItem[] = [
     {
         path: "",
         title: "wind",
-        playPicList: ["http://pic1.zhimg.com/v2-4ce925afd994d72a16276bc7fbddf97c_r.jpg", getImgUrl("white-silk.webp"), getImgUrl("white-lotus.webp")],
-        // playPicList: [
-        //     "http://pic4.zhimg.com/v2-02ae8129fed6feadc1514fd861a44a2f_r.jpg",
-
-        //     "http://pic1.zhimg.com/v2-aa528fcd1a5ff3ba4a4a8429d3c11222_r.jpg",
-
-        //     "http://pic1.zhimg.com/v2-4ce925afd994d72a16276bc7fbddf97c_r.jpg",
-        // ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "wind",
         content: "...",
     },
@@ -26,183 +19,126 @@ const listData: GridItem[] = [
     {
         path: "",
         title: "squaresWire",
-        playPicList: [
-            getImgUrl("004827-1673110107646e.webp"),
-            getImgUrl("113340-1650944020d166.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "squaresWire",
         content: "...",
     },
     {
         path: "",
         title: "crossWarp",
-        playPicList: [
-            getImgUrl("005836-16499555168372.webp"),
-            getImgUrl("184041-1674556841997c.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "crossWarp",
         content: "...",
     },
     {
         path: "",
         title: "crossZoom",
-        playPicList: [
-            getImgUrl("005104-16730238642321.webp"),
-            getImgUrl("192110-1568028070e1cc.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "crossZoom",
         content: "...",
     },
     {
         path: "",
         title: "directionalWarp",
-        playPicList: [
-            getImgUrl("172210-16742065302a9c.webp"),
-            getImgUrl("154624-16741143848abd.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "directionalWarp",
         content: "...",
     },
     {
         path: "",
         title: "dreamy",
-        playPicList: [
-            getImgUrl("154242-1674114162e7d7.webp"),
-            getImgUrl("154100-1674114060d02c.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "dreamy",
         content: "...",
     },
     {
         path: "",
         title: "flyEye",
-        playPicList: [
-            getImgUrl("173740-16722202608132.webp"),
-            getImgUrl("165525-167273612558a6.webp"),
-            getImgUrl("165158-16727359185812.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "flyEye",
         content: "...",
     },
     {
         path: "",
         title: "morph",
-        playPicList: [
-            getImgUrl("000703-16738852232359.webp"),
-            getImgUrl("005245-167319676525cb.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "morph",
         content: "...",
     },
     {
         path: "",
         title: "mosaic",
-        playPicList: [
-            getImgUrl("005741-167432026152b8.webp"),
-            getImgUrl("002815-16740592954afa.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "mosaic",
         content: "...",
     },
     {
         path: "",
         title: "perlin",
-        playPicList: [
-            getImgUrl("004413-16757018539a1b.webp"),
-            getImgUrl("004156-1675701716a172.webp"),
-            getImgUrl("004307-16757017873bc6.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "perlin",
         content: "...",
     },
     {
         path: "",
         title: "randomSquares",
-        playPicList: [
-            getImgUrl("203400-166791084068b8.webp"),
-            getImgUrl("215849-16651511295207.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "randomSquares",
         content: "...",
     },
     {
         path: "",
         title: "ripple",
-        playPicList: [
-            getImgUrl("200340-164233462027dc.webp"),
-            getImgUrl("002828-1654792108762f.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "ripple",
         content: "...",
     },
     {
         path: "",
         title: "simpleZoom",
-        playPicList: [
-            getImgUrl("000732-16489156528a86.webp"),
-            getImgUrl("000831-1648915711b98a.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "simpleZoom",
         content: "...",
     },
     {
         path: "",
         title: "directional",
-        playPicList: [
-            getImgUrl("002213-167379973369d6.webp"),
-            getImgUrl("002407-16735406474623.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "directional",
         content: "...",
     },
     {
         path: "",
         title: "windowSlice",
-        playPicList: [
-            getImgUrl("002407-16735406474623.webp"),
-            getImgUrl("233139-167371029908dd.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "windowSlice",
         content: "...",
     },
     {
         path: "",
         title: "invertedPageCurl",
-        playPicList: [
-            getImgUrl("233139-167371029908dd.webp"),
-            getImgUrl("002213-167379973369d6.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "invertedPageCurl",
         content: "...",
     },
     {
         path: "",
         title: "linearBlur",
-        playPicList: [
-            getImgUrl("220501-1586700301dfe4.webp"),
-            getImgUrl("001611-1596212171d777.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "linearBlur",
         content: "...",
     },
     {
         path: "",
         title: "glitchMemories",
-        playPicList: [
-            getImgUrl("63531.jpg"),
-            getImgUrl("63532.jpg"),
-            getImgUrl("63533.jpg"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "glitchMemories",
         content: "...",
     },
     {
         path: "",
         title: "polkaDotsCurtain",
-        playPicList: [
-            getImgUrl("read-book.jpg"),
-            getImgUrl("153854-16578707341b13.webp"),
-        ],
+        playPicList: [getImgUrl("red-silk.jpg"), getImgUrl("red-silk2.webp")],
         description: "polkaDotsCurtain",
         content: "...",
     },
@@ -233,26 +169,129 @@ const animationsNameList = [
 
 // 网络图片模式
 const singleModeCodeNetwork = `
-    import { WebglTransitions } from "webgl-transition/dist/index";
-    import { wind } from "webgl-transition/dist/transition-types";
-    let webglTransitions = new WebglTransitions(
-        {
-            domId: "#webgl-transition", // Necessary
-            width: 1920, // Optional attribute
-            height: 1080, // Optional attribute
-        },
-        [
-            wind
-        ], // transitionList
-        [
-            "http://pic4.zhimg.com/v2-02ae8129fed6feadc1514fd861a44a2f_r.jpg",
+<script setup lang="ts" name="mixedExample">
+import { computed } from "@vue/runtime-core";
+import { onMounted } from "vue";
+import {
+    WebglTransitions,
+    wind,
+    waterDrop,
+    squaresWire,
+    crossWarp,
+    crossZoom,
+    directionalWarp,
+    dreamy,
+    flyEye,
+    morph,
+    mosaic,
+    perlin,
+    randomSquares,
+    ripple,
+    simpleZoom,
+    directional,
+    windowSlice,
+    invertedPageCurl,
+    linearBlur,
+    glitchMemories,
+    polkaDotsCurtain,
+} from "webgl-transition";
+import { debounce } from "@/tools/common";
 
-            "http://pic1.zhimg.com/v2-aa528fcd1a5ff3ba4a4a8429d3c11222_r.jpg",
-        
-            "http://pic1.zhimg.com/v2-4ce925afd994d72a16276bc7fbddf97c_r.jpg",
-        ] // playPicList
-      );
-    webglTransitions?.main();
+let webglTransitions: WebglTransitions;
+const glcanvasRef = ref<HTMLDivElement>();
+const clientWidth = ref(0);
+const clientHeight = ref(0);
+const calcWidth = () => {
+    clientWidth.value = glcanvasRef.value ? glcanvasRef.value.clientWidth : 0;
+};
+const calcHeight = () => {
+clientHeight.value = glcanvasRef.value
+    ? Number((glcanvasRef.value?.clientWidth * 2400) / 3600)
+    : 0;
+};
+onMounted(() => {
+    calcWidth();
+    calcHeight();
+    nextTick(() => {
+        const imgsBase = import.meta.env.VITE_IMG_URL;
+        const imgs = [
+            'https://images.pexels.com/photos/127028/pexels-photo-127028.jpeg',
+            'https://images.pexels.com/photos/236660/pexels-photo-236660.jpeg',
+        ];
+        const obj = {
+        parentId: "#glcanvas",
+        transitionList: [
+            wind,
+            waterDrop,
+            squaresWire,
+            crossWarp,
+            crossZoom,
+            directionalWarp,
+            dreamy,
+            flyEye,
+            morph,
+            mosaic,
+            perlin,
+            randomSquares,
+            ripple,
+            simpleZoom,
+            directional,
+            windowSlice,
+            invertedPageCurl,
+            linearBlur,
+            glitchMemories,
+            polkaDotsCurtain,
+        ],
+        playPicUrlList: imgs,
+        playPicList: [],
+        carouselTime: 1000,
+        watchResize: false,
+        };
+        webglTransitions = new WebglTransitions(obj);
+        webglTransitions?.main();
+
+        const resizeObserver = new ResizeObserver(
+        debounce(() => {
+            calcWidth();
+            calcHeight();
+            webglTransitions?.onResize({
+            width: clientWidth.value,
+            height: clientHeight.value,
+            });
+        }, 300)
+        );
+        glcanvasRef.value && resizeObserver.observe(glcanvasRef.value);
+    });
+});
+const lost = () => {
+    webglTransitions?.simulatedLostContext();
+};
+const stop = () => {
+    webglTransitions?.stop();
+    webglTransitions?.dispose();
+};
+
+// clear Interval when page unmounted
+onUnmounted(() => {
+    stop();
+});
+</script>
+
+<template>
+<div>
+    <div
+    ref="glcanvasRef"
+    id="glcanvas"
+    :style="{ width: '100vw', height: clientHeight + 'px' }"
+    ></div>
+</div>
+</template>
+
+<style scoped lang="less">
+#glcanvas {
+    overflow: hidden;
+}
+</style>
 `
 
 // 混合模式

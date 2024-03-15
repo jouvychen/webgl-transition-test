@@ -72,14 +72,15 @@ onMounted(() => {
   calcWidth();
   calcHeight();
   nextTick(() => {
+    const imgsBase = import.meta.env.VITE_IMG_URL;
     const imgs = [
-      "https://img.zcool.cn/community/011d775d5663d2a80120695cdbced1.jpg",
-      "https://img.zcool.cn/community/0158fc5d5663d6a80120695cf12578.jpg",
-      "https://img.zcool.cn/community/01326c5d5663d2a8012187f49b8eed.jpg",
-      "https://img.zcool.cn/community/013d165d5663d2a8012187f41712de.jpg",
-      "https://img.zcool.cn/community/01c7575d5663d2a80120695c9b90d1.jpg",
-
-      // "http://pic1.zhimg.com/v2-4ce925afd994d72a16276bc7fbddf97c_r.jpg", // 可能是编码问题
+      // `${imgsBase}011d775d5663d2a80120695cdbced1.jpg`,
+      // `${imgsBase}0158fc5d5663d6a80120695cf12578.jpg`,
+      // `${imgsBase}01326c5d5663d2a8012187f49b8eed.jpg`,
+      // `${imgsBase}013d165d5663d2a8012187f41712de.jpg`,
+      // `${imgsBase}01c7575d5663d2a80120695c9b90d1.jpg`,
+      `${imgsBase}127028/pexels-photo-127028.jpeg`,
+      `${imgsBase}236660/pexels-photo-236660.jpeg`,
     ];
     const obj = {
       parentId: "#glcanvas",

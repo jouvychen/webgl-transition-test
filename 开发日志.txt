@@ -6,3 +6,5 @@
 
 
 Record<string, string | string[]>表示key是string，value为string或string[]的对象
+
+这是要发布到github上的文档

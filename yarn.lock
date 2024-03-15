@@ -1708,10 +1708,10 @@ vue@^3.2.45:
     "@vue/server-renderer" "3.4.19"
     "@vue/shared" "3.4.19"
 
-webgl-transition@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.npmmirror.com/webgl-transition/-/webgl-transition-1.2.0.tgz#ede10df5a3dffe5387240a5abdf961735ce14246"
-  integrity sha512-TZ4h7bo/wTjtF5OOsCSA73wxlU14PjJZZTZCbJvq2Ezyl9nGFxU1U8fvFCY4zRP8ACk1pqg+VEEeZzB9Q/DXNw==
+webgl-transition@1.3.1:
+  version "1.3.1"
+  resolved "https://registry.npmjs.org/webgl-transition/-/webgl-transition-1.3.1.tgz#f3764125821694546db3821837220fde3579dd3b"
+  integrity sha512-6pLOZp45SbiGrKsAR9mHSx0zUW5rFasvem5UMLlj9kuTD+Zn37USR571qAzlMaBXRCc63Seb2rpkZQ9NCZekrA==
 
 webpack-sources@^3.2.3:
   version "3.2.3"

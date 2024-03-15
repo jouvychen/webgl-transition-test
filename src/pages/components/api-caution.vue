@@ -7,16 +7,13 @@ import { animationsNameList } from "../constant";
     <h2 class="h2">Constructor</h2>
 
     <h3 class="h3">
-      WebglTransitions( parent:<a class="param links">ParentDom</a>,
-      transitionList:<a class="param links">Transition[]</a>, playPicList:<a
-        class="param links"
-        >string[] | HTMLImageElement[]</a
-      >, carouselTime?:<a class="param links">number</a>)
+      WebglTransitions( config: <a class="param links">Config</a>)
     </h3>
     <p>
-      <a class="links">parent</a>
-      -- parent node informations, expect to pass a HTMLDIVElement which
-      inincludes id, width(Optional), height(Optional).<br />
+      Config interface:
+      <br />
+      <a class="links">parentId</a>
+      -- parent node informations, expect to pass a HTMLDIVElement's id.<br />
       <a class="links">transitionList</a>
       -- a collection of animation modules. Import the corresponding animation
       module to transitionList. The supported types are:<br />
@@ -25,12 +22,19 @@ import { animationsNameList } from "../constant";
         <span v-if="index != animationsNameList.length - 1">、</span> </a
       ><br />
 
+      <a class="links">playPicUrlList</a>
+      -- online images src array.<br />
+
       <a class="links">playPicList</a>
-      -- allow online images array or HTMLImageElements array.<br />
+      -- HTMLImageElements array. For example, <a class="param links">new Image()</a>;<br />
 
       <a class="links">carouselTime</a>
       -- time between two animations. <b>Unit</b>:<a>ms</a>. <b>Default</b>:
-      <a>3000</a>.<br /><br />
+      <a>3000</a>.<br />
+      
+      <a class="links">watchResize</a>
+      -- listens for parent container size changes and redraws. <b>Default</b>:
+      <a>false</a>.<br />
 
       Create a new WebglTransition instance.
     </p>
@@ -46,6 +50,9 @@ import { animationsNameList } from "../constant";
       >
     </p>
 
+    <div><a class="links">.version</a>: 1.3.1</div>
+    <div><a class="links">.parentDom</a>: HTMLDivElement.</div>
+    <div><a class="links">.canvasId</a>: string.</div>
     <div><a class="links">.canvas</a>: HTMLCanvasElement.</div>
     <div><a class="links">.vsSource</a>: vertex shader source.</div>
     <div><a class="links">.fsSource</a>: fragment shader source.</div>
@@ -55,18 +62,26 @@ import { animationsNameList } from "../constant";
     </div>
     <div><a class="links">.shaderProgram</a>: WebGLProgram.</div>
     <div><a class="links">.vertexBuffer</a>: WebGLBuffer.</div>
+    <div><a class="links">.timer</a>: Transition gap timer. Type: NodeJS.Timeout | undefined | null</div>
+    <div><a class="links">.playIndex</a>: The number of rotations of the transitions.</div>
+    <div><a class="links">.playPicIndex</a>: The number of rotations of the pictures.</div>
     <div><a class="links">.gl</a>: WebGLRenderingContext.</div>
     <div><a class="links">.playPicPreloadList</a>: store preloaded images.</div>
     <div>
-      <a class="links">.textures</a>: take out 2 images from playPicPreloadList
+      <a class="links">.textures</a>: concat playPicUrlList and playPicList, take out 2 images from playPicPreloadList
       to create textures every times.
     </div>
+    
     <div>
-      <a class="links">.stopPlaying</a>: indicates whether the current state is
-      stopped.
+      <a class="links">.playStatus</a>: include playing, pause and stop.
+    </div>
+    <div>
+      <a class="links">.animationId</a>: record the id of the requestAnimationFrame.
     </div>
     <div><a class="links">.assignmentList</a>: set uniform parameters.</div>
-
+    <div><a class="links">.resizeObserver</a>: If you set watchResize to true in config, webgl-transition will create an internal listener for you to listen for changes in the size of the parent container and call the onResize method.</div>
+    <div><a class="links">onResizeCallback</a>: resize callback.</div>
+    
     <h2 class="h2">Methods</h2>
     <p>
       See all methods in webgl-transition
@@ -100,6 +115,18 @@ import { animationsNameList } from "../constant";
     </h3>
     <p>Call clearInterval method but no dispose webgl content.</p>
 
+    <!-- pause -->
+    <h3 class="h3">
+      .<a class="links">pause</a> () : <span class="param">undefined</span>
+    </h3>
+    <p>Set playStatus to pause and call cancelAnimation to cancel this animation and clearNextAnimation to cancel the timer for the next animation.</p>
+
+    <!-- continue -->
+    <h3 class="h3">
+      .<a class="links">continue</a> () : <span class="param">undefined</span>
+    </h3>
+    <p>Continue play the animation, call this after use pause function. </p>
+    
     <!-- dispose -->
     <h3 class="h3">
       .<a class="links">dispose</a> () : <span class="param">undefined</span>

@@ -95,13 +95,14 @@ let listData = singleWebglTransitionList.map((o: GridItem, i: number) => {
   o.id = `webgl-transition-parent-${Math.random().toString().slice(2, 10)}${i}`;
   return o;
 });
-const moduleTitle = "webgl-transition demo(V1.2.0)";
-const imgs = [
-  "http://pic4.zhimg.com/v2-02ae8129fed6feadc1514fd861a44a2f_r.jpg",
-
-  "http://pic1.zhimg.com/v2-aa528fcd1a5ff3ba4a4a8429d3c11222_r.jpg",
-
-  "http://pic1.zhimg.com/v2-4ce925afd994d72a16276bc7fbddf97c_r.jpg",
+const moduleTitle = "webgl-transition demo(V1.3.0)";
+const imgsBase = import.meta.env.VITE_IMG_URL;
+// 图片经过压缩可能无法解码并正常展示出来
+const onlineImages = [
+  // `${imgsBase}011d775d5663d2a80120695cdbced1.jpg`,
+  // `${imgsBase}0158fc5d5663d6a80120695cf12578.jpg`,
+  `${imgsBase}127028/pexels-photo-127028.jpeg`,
+  `${imgsBase}236660/pexels-photo-236660.jpeg`,
 ];
 let webglTransitions: WebglTransitions;
 const lastPlayObject = ref<GridItem>();
@@ -133,16 +134,15 @@ const onClickGrid = async (object: GridItem) => {
     }
     webglTransitions?.stop();
     webglTransitions?.dispose();
-    asyncLoadImage(object.playPicList, (result: HTMLImageElement[]) => {
+    asyncLoadImage(object.playPicList, (localImages: HTMLImageElement[]) => {
       const obj = {
-        parentId: `#${object.id}`,
-        transitionList: [transitionObject[object.title]],
-        playPicUrlList: [],
-        playPicList: result,
-        watchResize: true,
+        parentId: `#${object.id}`, // 过渡动画挂载父容器div的id
+        transitionList: [transitionObject[object.title]], // 过渡动画类型
+        playPicUrlList: [...onlineImages], // 使用在线图片地址
+        playPicList: localImages, // 用户自定义加载并返回image对象数组
+        watchResize: true, // 自动监听容器大小并调整画布大小
       };
       webglTransitions = new WebglTransitions(obj);
-
       webglTransitions?.main();
       lastPlayObject.value = object;
     });
@@ -157,7 +157,7 @@ const onClickGrid = async (object: GridItem) => {
   // webglTransitions = new WebglTransitions(
   //   `#${object.id}`,
   //   [object.title],
-  //   imgs
+  //   onlineImages
   // );
 
   // const el = document.querySelector(`#${lastPlayObject.value?.id}`);

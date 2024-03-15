@@ -5,14 +5,11 @@ const show1141 = ref(false); // version1.2.0's fisrt code show/not show
 
 <template>
   <div class="version-iteration">
-    <b>1.2.0</b>
+    <b>1.3.1</b>
     <br />
     <p>
       <i>Ⅰ.</i>
-      Considering the size of the packaged products, in version 1.2.0+,
-      transitionList parameter in the constructor has been changed from any[] to
-      Transition[], animations' names will no longer accepted by the
-      transitionList.
+      In this version, the initialization parameter is passed in as an object.
       <a @click="show1141 = !show1141" class="cursor">{{
         show1141 ? "put away" : "show more"
       }}</a>

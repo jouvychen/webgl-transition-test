@@ -12,12 +12,12 @@ import hljsVuePlugin from "@highlightjs/vue-plugin";
 import "highlight.js/styles/atom-one-dark.css";
 import "highlight.js/lib/common";
 
-import VConsole from 'vconsole';
-let vconsole = new VConsole();
+// import VConsole from 'vconsole';
+// let vconsole = new VConsole();
 
 const app = createApp(App);
 app.use(router);
 app.use(CommonComponent);
 app.use(hljsVuePlugin);
-app.use(vconsole);
+// app.use(vconsole);
 app.mount('#app');
