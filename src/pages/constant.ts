@@ -168,8 +168,7 @@ const animationsNameList = [
 ]
 
 // 网络图片模式
-const singleModeCodeNetwork = `
-<script setup lang="ts" name="mixedExample">
+const singleModeCodeNetwork = `<script setup lang="ts" name="mixedExample">
 import { computed } from "@vue/runtime-core";
 import { onMounted } from "vue";
 import {
@@ -295,96 +294,162 @@ onUnmounted(() => {
 `
 
 // 混合模式
-const singleModeCodeMixed = `
-    // This example is based on Vite
-    import { WebglTransitions } from "webgl-transition/dist/index";
-    import { wind } from "webgl-transition/dist/transition-types";
+const singleModeCodeMixed = `<script setup lang="ts" name="separateExample">
+import { ref } from "vue";
 
-    const getLocalImgUrl = (name: string) => {
-        return new URL("The image path in your project + name", import.meta.url).href;
-    };
+import { GridItem } from "../interface";
+import { singleWebglTransitionList } from "../constant";
+import gridLayout from "@/components/grid-layout.vue";
+import {
+  WebglTransitions,
+  wind,
+  waterDrop,
+  squaresWire,
+  crossWarp,
+  crossZoom,
+  directionalWarp,
+  dreamy,
+  flyEye,
+  morph,
+  mosaic,
+  perlin,
+  randomSquares,
+  ripple,
+  simpleZoom,
+  directional,
+  windowSlice,
+  invertedPageCurl,
+  linearBlur,
+  glitchMemories,
+  polkaDotsCurtain,
+} from "webgl-transition";
 
-    // Both local and network images
-    const imageList = ["http://pic1.zhimg.com/v2-4ce925afd994d72a16276bc7fbddf97c_r.jpg", getLocalImgUrl("white-lotus.webp")];
-    
-    const loadImgs = (imageList: string[]) => {
-        let proList = [];
-        for (let i = 0; i < imageList.length; i++) {
-            let pro = new Promise((resolve, reject) => {
-                let img = new Image();
-                // The picture is a web picture
-                if (RULE.isNetworkImageLoose.pattern.test(imageList[i])) {
-                    img.setAttribute("crossOrigin", "Anonymous");
-                }
-                img.onload = function () {
-                    resolve(img)
-                }
-                // Just focus on your local image path
-                img.src = imageList[i];
-            })
-            proList.push(pro)
+import RULE from "../../tools/rules";
+import { asyncLoadImage } from "../utils";
+
+interface ObjectKey {
+  [key: string]: any;
+}
+
+const transitionObject: ObjectKey = {
+  wind: wind,
+  waterDrop: waterDrop,
+  squaresWire: squaresWire,
+  crossWarp: crossWarp,
+  crossZoom: crossZoom,
+  directionalWarp: directionalWarp,
+  dreamy: dreamy,
+  flyEye: flyEye,
+  morph: morph,
+  mosaic: mosaic,
+  perlin: perlin,
+  randomSquares: randomSquares,
+  ripple: ripple,
+  simpleZoom: simpleZoom,
+  directional: directional,
+  windowSlice: windowSlice,
+  invertedPageCurl: invertedPageCurl,
+  linearBlur: linearBlur,
+  glitchMemories: glitchMemories,
+  polkaDotsCurtain: polkaDotsCurtain,
+};
+
+const gridLayoutRef = ref<typeof gridLayout>();
+const router = useRouter();
+let listData = singleWebglTransitionList.map((o: GridItem, i: number) => {
+  o.id = 'webgl-transition-parent-Math.random().toString().slice(2, 10)';
+  return o;
+});
+const moduleTitle = "webgl-transition demo(V1.3.1)";
+const imgsBase = import.meta.env.VITE_IMG_URL;
+const onlineImages = [
+    'https://images.pexels.com/photos/127028/pexels-photo-127028.jpeg',
+    'https://images.pexels.com/photos/236660/pexels-photo-236660.jpeg',
+];
+let webglTransitions: WebglTransitions;
+const lastPlayObject = ref<GridItem>();
+
+/**
+ * function
+ */
+const onClickGrid = async (object: GridItem) => {
+  if (
+    webglTransitions?.playStatus === "pause" &&
+    lastPlayObject.value?.id === object.id
+  ) {
+    webglTransitions?.continue();
+  } else if (
+    webglTransitions?.playStatus === "stop" ||
+    lastPlayObject.value?.id != object.id
+  ) {
+    if (lastPlayObject.value) {
+      const el = document.querySelector('#lastPlayObject.value?.id');
+      if (el) {
+        const childs = el.children;
+        for (let i = childs.length - 1; i >= 0; i--) {
+          if (RULE.webglTransitionParent.pattern.test(childs[i].id)) {
+            el.removeChild(childs[i]);
+          }
         }
-
-        return Promise.all(proList)
-            .then((rs) => {
-                console.log("loaded all images");
-                return Promise.resolve(rs);
-            })
+      }
     }
-
-    const asyncLoadImage = async (imgList: string[], cb: CallableFunction) => {
-        try {
-            let rs = await loadImgs(imgList);
-            cb(rs);
-        } catch (err) {
-            console.log(err)
-            cb([])
-        }
-    }
-
-    let webglTransitions: WebglTransitions;
-    asyncLoadImage(imageList, (imageResult: HTMLImageElement[]) => {
-        // Get the loaded images in the callback
-        webglTransitions = new WebglTransitions(
-            {
-                domId: "#webgl-transition",
-            },
-            [
-                wind
-            ],
-            imageResult
-        );
-    
-        webglTransitions?.main();
+    webglTransitions?.stop();
+    webglTransitions?.dispose();
+    asyncLoadImage(object.playPicList, (localImages: HTMLImageElement[]) => {
+      const obj = {
+        parentId: '#object.id',
+        transitionList: [transitionObject[object.title]],
+        playPicUrlList: [...onlineImages],
+        playPicList: localImages,
+        watchResize: true,
+      };
+      webglTransitions = new WebglTransitions(obj);
+      webglTransitions?.main();
+      lastPlayObject.value = object;
     });
+  } else if (
+    webglTransitions?.playStatus === "playing" &&
+    lastPlayObject.value?.id === object.id
+  ) {
+    webglTransitions?.pause();
+  }
+};
+
+const onViewCode = () => {
+  router.push("/view-code");
+};
+
+// clear Interval when page unmounted
+onUnmounted(() => {
+  webglTransitions?.stop();
+  webglTransitions?.dispose();
+});
+</script>
+
+<template>
+  <div class="separate-example-container">
+    <h1 class="main-title">{{ moduleTitle }}</h1>
+
+    <h3>Separate example</h3>
+    <p>
+      Each is a separate instance showing a different transition animation
+      effect.
+      <a @click="onViewCode" class="cursor">(documentation)</a>
+    </p>
+    <grid-layout
+      ref="gridLayoutRef"
+      :title="moduleTitle"
+      :list="listData"
+      @on-click-grid="onClickGrid"
+    ></grid-layout>
+  </div>
+</template>
+
+<style scoped lang="less">
+.separate-example-container {
+    color: #888;
+}
+</style>
 `
 
-// 批量动画模式
-const batchesModeCode = `
-    import { WebglTransitions } from "webgl-transition/dist/index";
-    import { wind, waterDrop, squaresWire, dreamy } from "webgl-transition/dist/transition-types";
-
-    let webglTransitions = new WebglTransitions(
-        {
-            domId: "#webgl-transition", // Necessary
-            width: 1920, // Optional attribute
-            height: 1080, // Optional attribute
-        },
-        [
-            wind,
-            waterDrop,
-            squaresWire,
-            dreamy
-        ], // transitionList
-        [
-            "http://pic4.zhimg.com/v2-02ae8129fed6feadc1514fd861a44a2f_r.jpg",
-
-            "http://pic1.zhimg.com/v2-aa528fcd1a5ff3ba4a4a8429d3c11222_r.jpg",
-        
-            "http://pic1.zhimg.com/v2-4ce925afd994d72a16276bc7fbddf97c_r.jpg",
-        ] // playPicList
-      );
-    webglTransitions?.main();
-`
-
-export { listData as singleWebglTransitionList, animationsNameList, singleModeCodeNetwork, singleModeCodeMixed, batchesModeCode }
+export { listData as singleWebglTransitionList, animationsNameList, singleModeCodeNetwork, singleModeCodeMixed }

@@ -4,8 +4,7 @@ import versionIteration from "./version-iteration.vue";
 import someTips from "./some-tips.vue";
 import {
   singleModeCodeNetwork,
-  singleModeCodeMixed,
-  batchesModeCode,
+  singleModeCodeMixed
 } from "../constant";
 </script>
 
@@ -43,7 +42,8 @@ import {
     <!-- 单个模式 -->
     <h3>Create a single transition animation</h3>
 
-    <i>Ⅰ. All pictures from the Internet</i>
+    <i>Ⅰ. All pictures from the Internet </i>
+    <a href="https://github.com/jouvychen/webgl-transition-test/blob/demo/src/pages/components/batches-example.vue" target="_brank">online code(demo branch)</a>
     <div class="code-container">
       <highlightjs
         class="highlight"
@@ -53,27 +53,13 @@ import {
     </div>
 
     <i>Ⅱ. Mixed mode, with both local and network images</i>
+    <a href="https://github.com/jouvychen/webgl-transition-test/blob/demo/src/pages/components/separate-example.vue" target="_brank">online code(demo branch)</a>
     <div class="code-container">
       <highlightjs
         class="highlight"
         language="js"
         :code="singleModeCodeMixed"
       />
-    </div>
-
-    <br />
-    <br />
-
-    <!-- 批量模式 -->
-    <h3>Create transition animations in batches</h3>
-
-    <p class="long-text">
-      Regarding the image type, it is the same with the requirement to create a
-      single transition animation. Just fill some animation's name to the
-      transitionList, then you'll get multiple types of transition animations.
-    </p>
-    <div class="code-container">
-      <highlightjs class="highlight" language="js" :code="batchesModeCode" />
     </div>
   </div>
 </template>

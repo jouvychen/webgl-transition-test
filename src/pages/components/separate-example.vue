@@ -95,7 +95,7 @@ let listData = singleWebglTransitionList.map((o: GridItem, i: number) => {
   o.id = `webgl-transition-parent-${Math.random().toString().slice(2, 10)}${i}`;
   return o;
 });
-const moduleTitle = "webgl-transition demo(V1.3.0)";
+const moduleTitle = "webgl-transition demo(V1.3.1)";
 const imgsBase = import.meta.env.VITE_IMG_URL;
 // 图片经过压缩可能无法解码并正常展示出来
 const onlineImages = [
